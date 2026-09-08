@@ -1,0 +1,27 @@
+{
+  "name": "1942-cabanas",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "seed:managers": "node scripts/seed-managers.mjs"
+  },
+  "dependencies": {
+    "next": "15.5.25",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "postgres": "3.4.5",
+    "stripe": "17.7.0",
+    "bcryptjs": "2.4.3",
+    "jose": "5.9.6"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "2.4.6",
+    "@types/node": "22.10.5",
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3",
+    "typescript": "5.7.3"
+  }
+}
