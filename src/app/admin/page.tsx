@@ -40,9 +40,6 @@ export default async function Dashboard() {
       </div>
 
       <div className="quick">
-        <Link className="btn btn-primary" href="/admin/new">
-          New booking
-        </Link>
         <Link className="btn" href="/admin/calendar">
           Calendar
         </Link>
@@ -76,7 +73,7 @@ export default async function Dashboard() {
                   ) : g.state === 'HELD' ? (
                     <span className="tag">Checking out</span>
                   ) : (
-                    <span style={{ color: 'var(--paper-dim)' }}>Open</span>
+                    <span style={{ color: 'var(--text-dim)' }}>Open</span>
                   )}
                 </td>
                 <td>{g.guests ?? ''}</td>
