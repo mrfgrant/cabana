@@ -472,4 +472,28 @@ td:last-child .hint-body { left: auto; right: -0.5rem; }
 
   /* Keep the last rows of content clear of the bar. */
   .admin-body { padding-bottom: 6rem; }
+
+  /* Paste this at the very END of src/app/admin/admin.css */
+ 
+/* ---------- palette bridge ----------
+   This file was written against the old dark palette. Those tokens no longer
+   exist in globals.css, so every rule using them was invalid and fell back to
+   inherited dark text. Define them here in terms of the current palette. */
+ 
+.admin {
+  --panel: #ffffff;
+  --ink: #ffffff;
+  --ink-sunken: #ffffff;
+  --line: var(--rule);
+  --line-strong: var(--rule-strong);
+  --paper-dim: var(--text-dim);
+  --brass: var(--navy);
+  --brass-bright: var(--navy-deep);
+  background: var(--paper-warm);
+}
+.admin .btn { color: var(--text); }
+.admin .btn-primary { color: #ffffff; }
+.admin .stat .v { color: var(--navy-ink); }
+.admin .admin-nav a[data-active='true'] { color: var(--navy); background: #eef1f8; }
+ 
 }
