@@ -28,6 +28,12 @@ export default async function BookingsPage({
       <h1>Bookings</h1>
       <p className="sub">{bookings.length} shown. Search by name, phone, email, or booking number.</p>
 
+      <div className="quick">
+        <Link className="btn btn-primary" href="/admin/new">
+          New booking
+        </Link>
+      </div>
+
       <AreaNote title="bookings">
         <p>
           Every reservation, online and taken at the door. Search by guest name, phone, email, or
