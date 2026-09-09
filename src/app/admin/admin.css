@@ -1,7 +1,9 @@
 .admin {
-  --bg: #0d1a15;
-  --panel: #14251f;
+  /* Surfaces inside the portal. The rest of the palette comes from globals.css. */
+  --panel: #ffffff;
+  --gold-ink: #6f5512;
   min-height: 100vh;
+  background: var(--paper-warm);
 }
 
 .admin-bar {
@@ -10,22 +12,22 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 0.9rem 1.25rem;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--rule);
   position: sticky;
   top: 0;
-  background: var(--ink);
+  background: var(--paper);
   z-index: 10;
 }
 
 .admin-bar .mark {
   font-family: 'Fraunces', Georgia, serif;
-  color: var(--brass);
+  color: var(--navy-deep);
   font-size: 1.25rem;
 }
 
 .admin-bar .who {
   font-size: 0.8rem;
-  color: var(--paper-dim);
+  color: var(--text-dim);
 }
 
 .admin-nav {
@@ -33,18 +35,27 @@
   gap: 0.25rem;
   overflow-x: auto;
   padding: 0.6rem 1.25rem;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--rule);
   scrollbar-width: none;
   position: sticky;
   top: 3.4rem;
-  background: var(--ink);
+  background: var(--paper);
   z-index: 9;
 }
 .admin-nav::-webkit-scrollbar { display: none; }
 
+/* The strip scrolls past the right edge on phones. Fade the cut-off tab so it
+   reads as "there is more", instead of looking like a clipped bug. */
+.admin-nav {
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 2.25rem), transparent 100%);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 2.25rem), transparent 100%);
+  scroll-snap-type: x proximity;
+}
+.admin-nav a { scroll-snap-align: start; }
+
 .admin-nav a {
   flex: 0 0 auto;
-  color: var(--paper-dim);
+  color: var(--text-dim);
   text-decoration: none;
   font-size: 0.88rem;
   padding: 0.35rem 0.7rem;
@@ -52,8 +63,9 @@
   border: 1px solid transparent;
 }
 .admin-nav a[data-active='true'] {
-  color: var(--paper);
-  border-color: var(--line-strong);
+  color: var(--navy);
+  background: #eef1f8;
+  border-color: var(--rule-strong);
 }
 
 .admin-body { padding: 1.5rem 1.25rem 5rem; max-width: 60rem; margin: 0 auto; }
@@ -63,7 +75,7 @@
   margin-bottom: 0.35rem;
 }
 .admin-body h2 { font-size: 1.35rem; margin: 2rem 0 0.75rem; }
-.sub { color: var(--paper-dim); font-size: 0.9rem; margin: 0 0 1.5rem; }
+.sub { color: var(--text-dim); font-size: 0.9rem; margin: 0 0 1.5rem; }
 
 .stats {
   display: grid;
@@ -72,7 +84,7 @@
   margin-bottom: 1.5rem;
 }
 .stat {
-  border: 1px solid var(--line);
+  border: 1px solid var(--rule);
   background: var(--panel);
   padding: 0.9rem 1rem;
 }
@@ -80,16 +92,16 @@
   font-family: 'Fraunces', Georgia, serif;
   font-size: 1.8rem;
   line-height: 1.1;
-  color: var(--brass);
+  color: var(--navy-ink);
 }
-.stat .k { color: var(--paper-dim); font-size: 0.78rem; margin-top: 0.2rem; }
+.stat .k { color: var(--text-dim); font-size: 0.78rem; margin-top: 0.2rem; }
 
 .quick { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
 .btn {
   display: inline-block;
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--rule-strong);
   background: transparent;
-  color: var(--paper);
+  color: var(--text);
   font: inherit;
   font-size: 0.88rem;
   padding: 0.55rem 0.9rem;
@@ -97,23 +109,23 @@
   text-decoration: none;
   cursor: pointer;
 }
-.btn:hover { border-color: var(--brass); }
-.btn-primary { background: var(--brass); color: var(--ink); border-color: var(--brass); }
-.btn-primary:hover { background: var(--brass-bright); }
+.btn:hover { border-color: var(--navy); color: var(--navy); }
+.btn-primary { background: var(--navy); color: #fff; border-color: var(--navy); }
+.btn-primary:hover { background: var(--navy-deep); border-color: var(--navy-deep); color: #fff; }
 .btn-danger { border-color: rgba(224, 112, 90, 0.5); color: var(--alert); }
 .btn-sm { font-size: 0.78rem; padding: 0.35rem 0.6rem; }
 
 table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
 th {
   text-align: left;
-  color: var(--paper-dim);
+  color: var(--text-dim);
   font-weight: 500;
   font-size: 0.78rem;
   padding: 0.5rem 0.6rem;
-  border-bottom: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--rule-strong);
 }
-td { padding: 0.65rem 0.6rem; border-bottom: 1px solid var(--line); vertical-align: top; }
-td a { color: var(--brass-bright); text-decoration: none; }
+td { padding: 0.65rem 0.6rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td a { color: var(--navy); text-decoration: none; }
 .table-wrap { overflow-x: auto; }
 
 .tag {
@@ -121,74 +133,75 @@ td a { color: var(--brass-bright); text-decoration: none; }
   font-size: 0.7rem;
   letter-spacing: 0.04em;
   padding: 0.15rem 0.45rem;
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--rule-strong);
   border-radius: 2px;
-  color: var(--paper-dim);
+  color: var(--text-dim);
   white-space: nowrap;
 }
-.tag-confirmed { color: var(--brass); border-color: rgba(201, 162, 39, 0.5); }
+.tag-confirmed { color: var(--gold-ink); border-color: rgba(184, 145, 47, 0.55); }
 .tag-cancelled { color: var(--alert); border-color: rgba(224, 112, 90, 0.4); }
-.tag-blocked { color: var(--paper-dim); }
-.tag-paid { color: var(--brass); border-color: rgba(201, 162, 39, 0.5); }
+.tag-blocked { color: var(--text-dim); }
+.tag-paid { color: var(--gold-ink); border-color: rgba(184, 145, 47, 0.55); }
 .tag-failed { color: var(--alert); border-color: rgba(224, 112, 90, 0.4); }
-.tag-simulated { color: #8fb0c8; border-color: rgba(143, 176, 200, 0.4); }
+.tag-simulated { color: #3f6d8c; border-color: rgba(143, 176, 200, 0.4); }
 
 /* calendar */
 .cal-day {
-  border: 1px solid var(--line);
+  border: 1px solid var(--rule);
   margin-bottom: 1rem;
   background: var(--panel);
 }
 .cal-day-head {
   padding: 0.6rem 0.85rem;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--rule);
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 0.75rem;
 }
 .cal-day-head .d { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; }
-.cal-day-head .n { color: var(--paper-dim); font-size: 0.78rem; }
+.cal-day-head .n { color: var(--text-dim); font-size: 0.78rem; }
 .cal-grid { display: grid; grid-template-columns: 1fr 1fr; }
 .cal-cell {
   padding: 0.6rem 0.85rem;
-  border-top: 1px solid var(--line);
-  border-right: 1px solid var(--line);
+  border-top: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
   font-size: 0.82rem;
   min-height: 4rem;
 }
 .cal-cell:nth-child(2n) { border-right: 0; }
-.cal-cell .slot-label { color: var(--paper-dim); font-size: 0.72rem; }
+.cal-cell .slot-label { color: var(--text-dim); font-size: 0.72rem; }
 .cal-cell .who { margin-top: 0.2rem; }
-.cal-cell a { color: var(--brass-bright); text-decoration: none; }
-.cal-cell.is-available { color: var(--paper-dim); }
-.cal-cell.is-blocked { background: rgba(107, 122, 114, 0.12); }
-.cal-cell.is-booked { background: rgba(201, 162, 39, 0.08); }
+.cal-cell a { color: var(--navy); text-decoration: none; }
+.cal-cell.is-available { color: var(--text-dim); }
+.cal-cell.is-blocked { background: #f0f2f7; }
+.cal-cell.is-booked { background: #eef1f8; }
 
 .cal-cabana {
   padding: 0.45rem 0.85rem;
-  border-top: 1px solid var(--line-strong);
+  border-top: 1px solid var(--rule-strong);
   font-size: 0.78rem;
-  color: var(--paper-dim);
+  color: var(--text-dim);
   grid-column: 1 / -1;
 }
 
 /* forms */
 .panel {
-  border: 1px solid var(--line);
+  border: 1px solid var(--rule);
   background: var(--panel);
   padding: 1.1rem;
   margin-bottom: 1.25rem;
 }
 .panel h3 { font-size: 1.1rem; margin-bottom: 0.85rem; }
-.panel .field label { color: var(--paper-dim); }
+.panel .field label { color: var(--text-dim); }
 .panel .field input,
 .panel .field select,
-.panel .field textarea { background: var(--ink-sunken); }
+.panel .field textarea { background: var(--paper); }
 
 .notice {
-  border-left: 3px solid var(--brass);
-  background: rgba(201, 162, 39, 0.1);
+  border-left: 4px solid var(--navy);
+  background: #eef1f8;
+  border-radius: 0 8px 8px 0;
   padding: 0.8rem 1rem;
   font-size: 0.88rem;
   margin-bottom: 1rem;
@@ -200,13 +213,13 @@ td a { color: var(--brass-bright); text-decoration: none; }
   gap: 0.75rem 1.5rem;
   font-size: 0.9rem;
 }
-.detail-grid .k { color: var(--paper-dim); font-size: 0.75rem; }
+.detail-grid .k { color: var(--text-dim); font-size: 0.75rem; }
 
 .msg-body {
   white-space: pre-wrap;
   font-size: 0.8rem;
-  color: var(--paper-dim);
-  border-left: 2px solid var(--line-strong);
+  color: var(--text-dim);
+  border-left: 2px solid var(--rule-strong);
   padding-left: 0.75rem;
   margin-top: 0.4rem;
 }
@@ -472,28 +485,4 @@ td:last-child .hint-body { left: auto; right: -0.5rem; }
 
   /* Keep the last rows of content clear of the bar. */
   .admin-body { padding-bottom: 6rem; }
-
-  /* Paste this at the very END of src/app/admin/admin.css */
- 
-/* ---------- palette bridge ----------
-   This file was written against the old dark palette. Those tokens no longer
-   exist in globals.css, so every rule using them was invalid and fell back to
-   inherited dark text. Define them here in terms of the current palette. */
- 
-.admin {
-  --panel: #ffffff;
-  --ink: #ffffff;
-  --ink-sunken: #ffffff;
-  --line: var(--rule);
-  --line-strong: var(--rule-strong);
-  --paper-dim: var(--text-dim);
-  --brass: var(--navy);
-  --brass-bright: var(--navy-deep);
-  background: var(--paper-warm);
-}
-.admin .btn { color: var(--text); }
-.admin .btn-primary { color: #ffffff; }
-.admin .stat .v { color: var(--navy-ink); }
-.admin .admin-nav a[data-active='true'] { color: var(--navy); background: #eef1f8; }
- 
 }
