@@ -99,12 +99,22 @@
   /* Karla, not Fraunces. Fraunces is the brand face and belongs on the
      wordmark and calendar headings, not on dashboard figures. */
   font-weight: 700;
-  font-size: clamp(1.35rem, 3.6vw, 1.8rem);
   font-variant-numeric: lining-nums tabular-nums;
   letter-spacing: -0.02em;
   line-height: 1.15;
   color: var(--navy-ink);
-  overflow-wrap: anywhere;
+  /* A currency figure must never break mid-number. If it will not fit, it
+     shrinks instead. */
+  white-space: nowrap;
+  font-size: clamp(1.05rem, 3.4vw, 1.8rem);
+}
+
+/* Size the figure against its own card, not the viewport. Reports renders five
+   cards where the dashboard renders four, so the same viewport gives cards of
+   different widths and viewport units guess wrong on one of them. */
+@supports (font-size: 1cqi) {
+  .stat { container-type: inline-size; }
+  .stat .v { font-size: clamp(1.05rem, 14cqi, 1.8rem); }
 }
 .stat .k { color: var(--text-dim); font-size: 0.78rem; margin-top: 0.2rem; text-wrap: balance; }
 
